@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{{ asset('img/logo-white.svg') }}" type="image/x-icon">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -13,8 +14,24 @@
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased font-sans">
-        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+    <body class="font-sans antialiased">
+        <div class="flex h-screen items-center justify-center xl:px-20 px-5">
+            <div class="w-full xl:w-1/3 flex flex-col xl:gap-20">
+                <img src="{{ asset('img/logo.svg') }}" alt="" class="w-[2rem] mb-10 hidden xl:block">
+                <div>
+                    <h1 class="text-5xl w-full xl:text-7xl font-bold xl:w-[90%]">Meet your animal needs here</h1>
+                    <img src="{{ asset('img/Illustration.svg') }}" alt="Illustration" class="w-[80%] mt-10 mx-auto xl:hidden">
+                    <p class="xl:w-[80%] mt-7 text-lg xl:text-2xl text-gray-500">Get interesting promos here, register your account immediately so you can meet your animal needs.</p>
+                    <a href="{{ route('login') }}">
+                        <x-button class="xl:w-1/3 w-full mt-10">Get Started</x-button>
+                    </a>
+                </div>
+            </div>
+            <div class="w-1/2 hidden xl:block">
+                <img src="{{ asset('img/Illustration.svg') }}" alt="Illustration" class="w-[80%] mx-auto hidden xl:block">
+            </div>
+        </div>
+        {{-- <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
             <img id="background" class="absolute -left-20 top-0 max-w-[877px]" src="https://laravel.com/assets/img/welcome/background.svg" />
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
@@ -140,6 +157,6 @@
                     </footer>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </body>
 </html>
