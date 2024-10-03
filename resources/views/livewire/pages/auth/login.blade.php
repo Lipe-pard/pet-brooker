@@ -8,6 +8,7 @@ use Livewire\Volt\Component;
 new #[Layout('layouts.guest')] class extends Component
 {
     public LoginForm $form;
+    public $authenticatedUser;
 
     /**
      * Handle an incoming authentication request.
@@ -19,6 +20,14 @@ new #[Layout('layouts.guest')] class extends Component
         $this->form->authenticate();
 
         Session::regenerate();
+
+        $this->authenticatedUser = Auth::user();
+
+        if ($this->authenticatedUser->is_admin === 1) {
+            $this->redirect(route('admin.dashboard', absolute: false), navigate: true);
+        }else {
+            $this->redirect(route('client.dashboard', absolute: false), navigate: true);
+        }
 
         $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
     }
@@ -74,6 +83,6 @@ new #[Layout('layouts.guest')] class extends Component
             <x-button class="w-3/4 mt-10">Login</x-button>
         </form>
 
-        <p class="mx-auto">Don’t have an account? <a href="" class="text-indigo-500 font-bold hover:underline">Create Account</a></p>
+        <p class="mx-auto">Don’t have an account? <a href="{{ route('register') }}" class="text-indigo-500 font-bold hover:underline">Create Account</a></p>
     </div>
 </div>
