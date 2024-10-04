@@ -4,19 +4,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::middleware(['auth', 'verified'])
-    ->as('admin.')
-    ->group(function () {
-        Route::view('dashboard', 'page.admin.dashboard')
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('admin')->as('admin.')->group( function () {
+        Route::view('dashboard', 'pages.admin.dashboard')
             ->name('dashboard');
     });
-
-Route::middleware(['auth', 'verified'])
-    ->as('client.')
-    ->group(function () {
+    Route::prefix('client')->as('client.')->group( function () {
         Route::view('dashboard', 'pages.client.dashboard')
             ->name('dashboard');
     });
+});
 
 
 
